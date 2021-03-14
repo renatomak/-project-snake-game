@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useEffect } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/** FONTE: https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258 */
+const Canvas = props => {
+  const board = 32;
+  
+  const canvasRef = useRef(null)
+  
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+    //Our first draw
+    context.fillStyle = '#90ee90'
+    context.fillRect(0, 0, 16 * board, 16 * board)
+  }, [])
+  
+  return <canvas ref={canvasRef} {...props} width="512" height="512"/>
 }
 
-export default App;
+export default Canvas
